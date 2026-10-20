@@ -2,8 +2,154 @@
 
 import { useEffect, useState } from 'react';
 
+const MENU = [
+    {
+        id: 'sandwichs', tab: 'Sandwichs', title: 'Sandwichs', subtitle: 'Pain arabe, Fataya & plus encore', img: '/images/sandwich.jpg',
+        groups: [
+            {
+                items: [
+                    { name: 'Jeune Mara', price: '3 500 F', badge: 'Populaire', desc: 'Cuisse de poulet entier pané + frite + boisson au choix + eau' },
+                    { name: 'Team VJ', price: '1 500 F', desc: 'Pain arabe + blanc poulet + frites + fromage + sauce au choix' },
+                    { name: 'La Corniche', price: '1 500 F', desc: 'Pain arabe + Dibi + frites + fromages + sauce au choix' },
+                    { name: 'Tonton Safff', price: '1 500 F', desc: 'Pain arabe + jambon + fromage + oeuf + frites + sauce au choix' },
+                    { name: 'La Diarra', price: '500 F', desc: 'Fataya + omelette + frite + sauce au choix + eau' },
+                    { name: 'Team Feeeee', price: '700 F', desc: 'Fataya + viande hachée + frite + sauce au choix' },
+                    { name: 'Rama Chou', price: '1 000 F', desc: 'Fataya + viande hachée + fromage + sauces au choix + eau' },
+                    { name: "L'Incontournable", price: '1 000 F', desc: 'Fataya + jambon + fromage + sauces + eau' },
+                    { name: 'Anti-Goumin', price: '1 500 F', desc: 'Fataya + viande Dibi + fromage + frite + sauces au choix' },
+                    { name: 'Fataya Kaay Thiop', price: '1 500 F', desc: 'Fataya + poulets + fromage + frite + sauces au choix' },
+                    { name: 'Île du Saloum', price: '2 000 F', desc: 'Fataya + poulets + viande Dibi + fromage + frite + sauce au choix' },
+                    { name: 'Nana & Sigua', price: '1 000 F', desc: 'Fataya + hot dog + fromage + sauce au choix' },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'crepes', tab: 'Crêpes', title: 'Crêpes', subtitle: 'Sucrées & Salées', img: '/images/crepes.jpg',
+        groups: [
+            {
+                title: 'Crêpes Sucrées',
+                items: [
+                    { name: 'Nutella', price: '1 000 F' },
+                    { name: 'Crêpe Nutella Banane Coco', price: '1 500 F' },
+                    { name: 'Crêpe Nutella Biscuits Nutella', price: '1 500 F' },
+                    { name: 'Crêpe Nutella Oreo', price: '1 500 F' },
+                ],
+            },
+            {
+                title: 'Crêpes Salées',
+                items: [
+                    { name: 'Crêpe Jambon + Fromage', price: '2 000 F' },
+                    { name: 'Crêpe Saucisse + Fromage', price: '2 000 F' },
+                    { name: 'Crêpe Jambon + Fromage + Oeuf', price: '2 000 F' },
+                    { name: 'Crêpe Poulet + Fromage', price: '2 000 F' },
+                    { name: 'Crêpe Dibi + Fromage', price: '2 000 F' },
+                    { name: 'Crêpe Viande Hachée + Fromage', price: '2 000 F' },
+                    { name: 'Crêpe Poulet + Fromage + Frites + Oeuf', price: '2 500 F' },
+                    { name: 'Crêpe Viande Hachée + Fromage + Frites + Oeuf', price: '2 500 F' },
+                    { name: 'Crêpe Dibi + Fromage + Frites + Oeuf', price: '2 500 F' },
+                    { name: 'El Capo', price: '4 000 F', desc: 'Crêpe jambon + fromage + poulet + Dibi + oeuf' },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'fastfood', tab: 'Fast-Food', title: 'Fast-Food', subtitle: 'Tacos & Burgers', img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80',
+        groups: [
+            {
+                title: 'Tacos',
+                items: [
+                    { name: 'Tacos Poulet', price: '2 500 F', desc: 'Pain tortilla + blanc de poulet + fromage + frites + sauce au choix' },
+                    { name: 'Tacos Viande', price: '2 500 F', desc: 'Pain tortilla + Dibi + fromage + frites + sauce au choix' },
+                    { name: 'Tacos Mixte', price: '3 000 F', desc: 'Pain tortilla + blanc de poulet + Dibi + fromage + frites + sauce au choix' },
+                    { name: 'Tacos Chawarma', price: '2 500 F', desc: 'Pain tortilla + Dibi + fromage' },
+                    { name: 'Tacos Pacha', price: '2 500 F' },
+                    { name: 'Tacos Norvégien', price: '2 500 F', desc: 'Pain tortilla + hotdog + fromage + frites + oeuf + sauce au choix' },
+                    { name: 'Norvégien', price: '1 500 F', desc: 'Pain arabe + hotdog + frites + fromage + oeuf + sauce au choix' },
+                ],
+            },
+            {
+                title: 'Burgers',
+                items: [
+                    { name: 'Burger Kaay Thiop', price: '2 500 F', badge: 'Best-Seller', desc: 'Pain burger + double steak + frites + fromage + oeuf + sauce au choix' },
+                    { name: 'Burger Simple', price: '1 500 F', desc: 'Pain burger + steak + frites + fromages + oeuf + sauce au choix' },
+                    { name: 'Chicken Burger', price: '1 500 F', desc: 'Pain burger + steak poulet + frites + fromage + oeuf + sauce au choix' },
+                    { name: 'Burger Mixte', price: '2 500 F', desc: 'Pain burger + steaks viande & poulet + frites + fromage + oeuf + sauce au choix' },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'pizza', tab: 'Pizza', title: 'Pizza', subtitle: 'Petite, Moyenne & Grande', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80',
+        groups: [
+            {
+                items: [
+                    { name: 'Reine', desc: 'Jambon + champignon + olive noire', sizes: [['PM', '3 000 F'], ['M', '3 500 F'], ['GM', '5 000 F']] },
+                    { name: 'Shawarma', desc: 'Shawarma + légumes + sauces + fromage', sizes: [['PM', '3 000 F'], ['M', '4 000 F'], ['GM', '6 000 F']] },
+                    { name: 'Margarita', desc: 'Sauce + fromage', sizes: [['PM', '3 000 F'], ['M', '4 000 F'], ['GM', '5 000 F']] },
+                    { name: 'Orientale', desc: 'Merguez ou viande hachée + sauce', sizes: [['PM', '3 000 F'], ['M', '4 000 F'], ['GM', '5 000 F']] },
+                    { name: 'Poulet', desc: 'Fromage + poulet + sauce', sizes: [['PM', '3 500 F'], ['M', '4 500 F'], ['GM', '6 000 F']] },
+                    { name: 'Vaugéne', desc: 'Jambon + fromage + oeuf + crème fraîche', sizes: [['PM', '4 000 F'], ['M', '4 500 F'], ['GM', '6 000 F']] },
+                    { name: 'Filât Poulet', desc: 'Poulet + fromage + maïs + sauce barbecue', sizes: [['PM', '3 500 F'], ['M', '4 500 F'], ['GM', '6 000 F']] },
+                    { name: 'Filât Viande', desc: 'Viande + maïs + fromage + sauces', sizes: [['PM', '3 500 F'], ['M', '4 500 F'], ['GM', '6 000 F']] },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'plats', tab: 'Plats', title: 'Plats & Wraps', subtitle: 'Poulets, brochettes & plus', img: '/images/chicken.jpg',
+        groups: [
+            {
+                title: 'Menu 3 places',
+                items: [
+                    { name: 'Poulet entier', price: '6 000 F' },
+                    { name: 'Demi poulet', price: '3 000 F' },
+                    { name: '1/4 de poulet', price: '1 500 F' },
+                    { name: 'Nems', price: '200 F', desc: 'Box de 7 pièces : 2 000 F' },
+                ],
+            },
+            {
+                title: 'Plats',
+                items: [
+                    { name: 'Plat Shawarma', price: '2 500 F', desc: 'Shawarma + frites + pain arabe + légumes + sauce blanche' },
+                    { name: 'Plat Steaks', price: '2 500 F', desc: 'Steaks + sauce oignon + mayo + pain' },
+                    { name: 'Plat Omelettes', price: '2 000 F', desc: 'Omelette + sauce + salade + mayo + ketchup' },
+                    { name: 'Méchoui', price: '6 000 / 3 000 F', desc: 'Viande agneau + sauce oignon + salade + tomate + maïs + pain' },
+                    { name: 'Poutine', price: '2 000 F', desc: 'Dibi + fromage + frites + box' },
+                ],
+            },
+            {
+                title: 'Wraps & New-Yorkais',
+                items: [
+                    { name: 'Wrap Poulet', price: '2 000 F', desc: 'Poulet pané + sauce cocktail + fromage + frites' },
+                    { name: 'Wrap Viande', price: '2 000 F', desc: 'Viande + maïs + fromage + sauce algérienne + tortilla' },
+                    { name: 'Wrap Mixte', price: '3 000 F', desc: 'Poulet et viande + fromage + tortilla + sauce cocktail + algérienne' },
+                    { name: 'New-Yorkais Poulet', price: '2 500 F', desc: 'Poulet + maïs + fromage + sauce barbecue' },
+                    { name: 'New-Yorkais Viande', price: '2 000 F', desc: 'Viande + sauce algérienne + maïs' },
+                ],
+            },
+            {
+                title: 'Brochettes',
+                items: [
+                    { name: 'Brochette Poulet', price: '250 F', desc: "L'unité · Plat 5 pièces : 2 000 F" },
+                    { name: 'Brochette Viande', price: '250 F', desc: "L'unité · Plat 5 pièces : 2 000 F" },
+                ],
+            },
+        ],
+    },
+];
+
+const SUPPLEMENTS = [
+    ['Supplément Fromage', '500 F'],
+    ['Frite', '500 F'],
+    ['Boisson', '500 F'],
+    ['Eau', '50 / 100 F'],
+    ['Maad', '500 / 1 000 F'],
+    ['Smoothie', '1 000 / 1 500 F'],
+];
+
 export default function Home() {
-    const [activeTab, setActiveTab] = useState('petitdej');
+    const [activeTab, setActiveTab] = useState('sandwichs');
     const [showScroll, setShowScroll] = useState(false);
 
     useEffect(() => {
@@ -98,145 +244,53 @@ export default function Home() {
             {/* NAV */}
             <div className="nav-container">
                 <div className="nav-tabs">
-                    <div className={`nav-tab ${activeTab === 'petitdej' ? 'active' : ''}`} data-id="petitdej" onClick={() => scrollToSection('petitdej')}>Petit déj</div>
-                    <div className={`nav-tab ${activeTab === 'sandwichs' ? 'active' : ''}`} data-id="sandwichs" onClick={() => scrollToSection('sandwichs')}>Sandwichs</div>
-                    <div className={`nav-tab ${activeTab === 'crepes' ? 'active' : ''}`} data-id="crepes" onClick={() => scrollToSection('crepes')}>Crêpes</div>
-                    <div className={`nav-tab ${activeTab === 'fastfood' ? 'active' : ''}`} data-id="fastfood" onClick={() => scrollToSection('fastfood')}>Fast-Food</div>
+                    {MENU.map(cat => (
+                        <div key={cat.id} className={`nav-tab ${activeTab === cat.id ? 'active' : ''}`} data-id={cat.id} onClick={() => scrollToSection(cat.id)}>{cat.tab}</div>
+                    ))}
                     <div className={`nav-tab ${activeTab === 'supplements' ? 'active' : ''}`} data-id="supplements" onClick={() => scrollToSection('supplements')}>Extras</div>
                 </div>
             </div>
 
-            {/* ==================== PETIT DEJ ==================== */}
-            <div className="category-banner fade-in" id="banner-petitdej">
-                <img className="category-banner-img" src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80" alt="Petit déj" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-                <div className="category-banner-overlay">
-                    <div className="category-banner-text">
-                        <h2>Petit déj</h2>
-                        <p>Pour bien commencer la journée</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="menu-section" id="petitdej">
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Nems</span><span className="item-price">200 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Rissoles</span><span className="item-price">250 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Fonde</span><span className="item-price">500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Thiakry</span><span className="item-price">500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Lakh</span><span className="item-price">1 000 F</span></div></div>
-            </div>
-
-            {/* ==================== SANDWICHS ==================== */}
-            <div className="category-banner fade-in" id="banner-sandwichs">
-                <img className="category-banner-img" src="/images/sandwich.jpg" alt="Sandwichs" />
-                <div className="category-banner-overlay">
-                    <div className="category-banner-text">
-                        <h2>Sandwichs</h2>
-                        <p>Tortillas, Fataya & plus encore</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="menu-section" id="sandwichs">
-                {/* Featured */}
-                <div className="featured-item fade-in">
-                    <div className="featured-body">
-                        <span className="featured-badge">Populaire</span>
-                        <div className="item-top">
-                            <span className="item-name">Jeune Mara</span>
-                            <span className="item-price">3 500 F</span>
+            {MENU.map(cat => (
+                <div key={cat.id}>
+                    <div className="category-banner fade-in" id={'banner-' + cat.id}>
+                        <img className="category-banner-img" src={cat.img} alt={cat.title} {...(cat.img.startsWith('http') ? { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' } : {})} />
+                        <div className="category-banner-overlay">
+                            <div className="category-banner-text">
+                                <h2>{cat.title}</h2>
+                                <p>{cat.subtitle}</p>
+                            </div>
                         </div>
-                        <p className="item-desc">Cuisse de poulet entier pané + frite + boisson au choix</p>
+                    </div>
+
+                    <div className="menu-section" id={cat.id}>
+                        {cat.groups.map((group, gi) => (
+                            <div key={gi}>
+                                {group.title && <div className="subsection-title">{group.title}</div>}
+                                {group.items.map(item => (
+                                    <div key={item.name} className={item.badge ? 'featured-item fade-in' : 'menu-item fade-in'}>
+                                        <div className={item.badge ? 'featured-body' : undefined}>
+                                            {item.badge && <span className="featured-badge">{item.badge}</span>}
+                                            <div className="item-top">
+                                                <span className="item-name">{item.name}</span>
+                                                {item.price && <span className="item-price">{item.price}</span>}
+                                            </div>
+                                            {item.sizes && (
+                                                <div className="item-sizes">
+                                                    {item.sizes.map(([size, price]) => (
+                                                        <span key={size} className="item-size"><b>{size}</b> {price}</span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {item.desc && <p className="item-desc">{item.desc}</p>}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
-
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Team VJ</span><span className="item-price">1 500 F</span></div><p className="item-desc">Tortilla + blanc poulet + frites + fromage + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">La Corniche</span><span className="item-price">1 500 F</span></div><p className="item-desc">Tortilla + Dibi + frites + fromages + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tonton Safff</span><span className="item-price">1 500 F</span></div><p className="item-desc">Tortilla + jambon + fromage + oeuf + frites + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Pain Omelette (PM)</span><span className="item-price">500 F</span></div><p className="item-desc">Pain + omelette + frites</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Pain Omelette (GM)</span><span className="item-price">1 000 F</span></div><p className="item-desc">Pain + omelette + frites + fromage</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Pain Viande Hachée</span><span className="item-price">700 F</span></div><p className="item-desc">Pain + viande hachée + frites + sauce</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">La Diarra</span><span className="item-price">500 F</span></div><p className="item-desc">Fataya + omelette + frite + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Team Feeeee</span><span className="item-price">700 F</span></div><p className="item-desc">Fataya + viande hachée + frite + sauce aux choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Rama Chou</span><span className="item-price">1 000 F</span></div><p className="item-desc">Fataya + viande hachée + fromage + sauces au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">L'Incontournable</span><span className="item-price">1 000 F</span></div><p className="item-desc">Fataya + jambon + fromage + sauces</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Anti-Goumin</span><span className="item-price">1 500 F</span></div><p className="item-desc">Fataya + viande dibi + fromage + frite + sauces aux choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Anthia</span><span className="item-price">1 500 F</span></div><p className="item-desc">Fataya + poulets + fromage + frite + sauces au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Ile du Saloum</span><span className="item-price">2 000 F</span></div><p className="item-desc">Fataya + poulets + viande dibi + fromage + frite + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Nana & Sigua</span><span className="item-price">1 000 F</span></div><p className="item-desc">Fataya + hot dog + fromage + sauce au choix</p></div>
-            </div>
-
-            {/* ==================== CREPES ==================== */}
-            <div className="category-banner fade-in" id="banner-crepes">
-                <img className="category-banner-img" src="/images/crepes.jpg" alt="Crêpes" />
-                <div className="category-banner-overlay">
-                    <div className="category-banner-text">
-                        <h2>Crêpes</h2>
-                        <p>Sucrées & Salées</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="menu-section" id="crepes">
-                <div className="subsection-title">Crêpes Sucrées</div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Nutella</span><span className="item-price">1 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Nutella Banane Coco</span><span className="item-price">1 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Nutella Biscuits</span><span className="item-price">1 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Nutella Oreo</span><span className="item-price">1 500 F</span></div></div>
-
-                <div className="subsection-title">Crêpes Salées</div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Jambon + Fromage</span><span className="item-price">2 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Saucisse + Fromage</span><span className="item-price">2 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Jambon + Fromage + Saucisse + Oeuf</span><span className="item-price">2 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Poulet + Fromage</span><span className="item-price">2 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Dibi + Fromage</span><span className="item-price">2 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Viande Hachée + Fromage</span><span className="item-price">2 000 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Poulet + Fromage + Frites + Oeuf</span><span className="item-price">2 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Viande Hachée + Fromage + Frites + Oeuf</span><span className="item-price">2 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Crêpe Dibi + Fromage + Frites + Oeuf</span><span className="item-price">2 500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Padin Chou</span><span className="item-price">3 000 F</span></div><p className="item-desc">Crêpe jambon + fromage + poulet + Dibi + oeuf</p></div>
-            </div>
-
-            {/* ==================== FAST-FOOD ==================== */}
-            <div className="category-banner fade-in" id="banner-fastfood">
-                <img className="category-banner-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80" alt="Fast Food" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-                <div className="category-banner-overlay">
-                    <div className="category-banner-text">
-                        <h2>Fast-Food</h2>
-                        <p>Tacos & Burgers</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="menu-section" id="fastfood">
-                <div className="subsection-title">Tacos</div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tacos Poulet</span><span className="item-price">2 000 F</span></div><p className="item-desc">Pain tortilla + blanc de poulet + fromage + frites + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tacos Viande</span><span className="item-price">2 000 F</span></div><p className="item-desc">Pain tortilla + Dibi + fromage + frites + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tacos Mixte</span><span className="item-price">2 500 F</span></div><p className="item-desc">Pain tortilla + blanc de poulet + Dibi + fromage + frites + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tacos Pacha</span><span className="item-price">2 000 F</span></div><p className="item-desc">Pain tortilla + viande dibi + fromage + frites + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Tacos Norvégien</span><span className="item-price">2 000 F</span></div><p className="item-desc">Pain tortilla + hotdog + fromage + frites + oeuf + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Norvégienne</span><span className="item-price">1 500 F</span></div><p className="item-desc">Pain arabe + hotdog + frites + fromage + oeuf + sauce au choix</p></div>
-
-                <div className="subsection-title">Burgers</div>
-
-                <div className="featured-item fade-in">
-                    <img className="featured-img" src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&q=80" alt="Burger Royal" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-                    <div className="featured-body">
-                        <span className="featured-badge">Best-Seller</span>
-                        <div className="item-top">
-                            <span className="item-name">Burger Royal</span>
-                            <span className="item-price">2 000 F</span>
-                        </div>
-                        <p className="item-desc">Pain burger + double steak + frites + fromage + oeuf + sauce au choix</p>
-                    </div>
-                </div>
-
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Burger Simple</span><span className="item-price">1 500 F</span></div><p className="item-desc">Pain burger + steak + frites + fromages + oeuf + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Chicken Burger</span><span className="item-price">2 000 F</span></div><p className="item-desc">Pain burger + steak poulet + frites + fromage + oeuf + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Burger Mixte</span><span className="item-price">2 500 F</span></div><p className="item-desc">Pain burger + steaks viande & poulet + frites + fromage + oeuf + sauce au choix</p></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Burger Jamila</span><span className="item-price">2 500 F</span></div><p className="item-desc">Pain tortilla + double steak + double oeuf + frite + fromage</p></div>
-            </div>
-
-
+            ))}
 
             {/* ==================== SUPPLEMENTS ==================== */}
             <div className="category-banner fade-in" id="banner-supplements">
@@ -251,24 +305,11 @@ export default function Home() {
 
             <div className="menu-section" id="supplements">
                 <div className="supplements-grid">
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Supplément Fromage</div><div className="supplement-price">500 F</div></div>
-                    </div>
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Frite</div><div className="supplement-price">500 F</div></div>
-                    </div>
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Boisson</div><div className="supplement-price">400 F</div></div>
-                    </div>
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Eau</div><div className="supplement-price">50 / 100 F</div></div>
-                    </div>
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Maad</div><div className="supplement-price">500 / 1 000 F</div></div>
-                    </div>
-                    <div className="supplement-item fade-in">
-                        <div className="supp-info"><div className="supplement-name">Smoothie</div><div className="supplement-price">1 000 / 1 500 F</div></div>
-                    </div>
+                    {SUPPLEMENTS.map(([name, price]) => (
+                        <div key={name} className="supplement-item fade-in">
+                            <div className="supp-info"><div className="supplement-name">{name}</div><div className="supplement-price">{price}</div></div>
+                        </div>
+                    ))}
                 </div>
             </div>
 

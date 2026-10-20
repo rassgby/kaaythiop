@@ -247,6 +247,28 @@ body {
     line-height: 1.5;
 }
 
+.item-sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.item-size {
+    color: var(--price-color);
+    background: var(--price-bg);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.item-size b {
+    font-weight: 800;
+    margin-right: 2px;
+}
+
 /* ========== SUBSECTION ========== */
 .subsection-title {
     font-weight: 700;
