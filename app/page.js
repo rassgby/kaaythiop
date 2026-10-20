@@ -14,11 +14,11 @@ export default function Home() {
 
         const handleScroll = () => {
             let cur = '';
-            sections.forEach(s => { 
+            sections.forEach(s => {
                 const offset = s.offsetTop - navH() - 150;
                 if (window.scrollY >= offset) {
                     const id = s.id.replace('banner-', '');
-                    if (id) cur = id; 
+                    if (id) cur = id;
                 }
             });
             if (cur && cur !== activeTab) setActiveTab(cur);
@@ -29,14 +29,14 @@ export default function Home() {
         window.addEventListener('scroll', handleScroll);
 
         const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { 
-                if (e.isIntersecting) { 
-                    e.target.classList.add('vis'); 
-                    obs.unobserve(e.target); 
-                } 
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    obs.unobserve(e.target);
+                }
             });
         }, { threshold: 0.08 });
-        
+
         document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
         return () => {
@@ -52,7 +52,7 @@ export default function Home() {
             const containerWidth = navTabs.offsetWidth;
             const elementOffset = activeElement.offsetLeft;
             const elementWidth = activeElement.offsetWidth;
-            
+
             navTabs.scrollTo({
                 left: elementOffset - (containerWidth / 2) + (elementWidth / 2),
                 behavior: 'smooth'
@@ -65,7 +65,7 @@ export default function Home() {
         const section = document.getElementById(id);
         const navContainer = document.querySelector('.nav-container');
         const navH = navContainer ? navContainer.offsetHeight : 0;
-        
+
         const target = banner || section;
         if (target) {
             window.scrollTo({ top: target.offsetTop - navH, behavior: 'smooth' });
@@ -89,7 +89,7 @@ export default function Home() {
                     </div>
                     <p className="tagline">Food and Drink</p>
                     <a href="tel:+221771076969" className="phone-link">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
                         (+221) 77 107 69 69
                     </a>
                 </div>
@@ -98,7 +98,7 @@ export default function Home() {
             {/* NAV */}
             <div className="nav-container">
                 <div className="nav-tabs">
-                    <div className={`nav-tab ${activeTab === 'petitdej' ? 'active' : ''}`} data-id="petitdej" onClick={() => scrollToSection('petitdej')}>Petit Déj</div>
+                    <div className={`nav-tab ${activeTab === 'petitdej' ? 'active' : ''}`} data-id="petitdej" onClick={() => scrollToSection('petitdej')}>Petit déj</div>
                     <div className={`nav-tab ${activeTab === 'sandwichs' ? 'active' : ''}`} data-id="sandwichs" onClick={() => scrollToSection('sandwichs')}>Sandwichs</div>
                     <div className={`nav-tab ${activeTab === 'crepes' ? 'active' : ''}`} data-id="crepes" onClick={() => scrollToSection('crepes')}>Crêpes</div>
                     <div className={`nav-tab ${activeTab === 'fastfood' ? 'active' : ''}`} data-id="fastfood" onClick={() => scrollToSection('fastfood')}>Fast-Food</div>
@@ -106,23 +106,23 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* ==================== PETIT DEJEUNER ==================== */}
+            {/* ==================== PETIT DEJ ==================== */}
             <div className="category-banner fade-in" id="banner-petitdej">
-                <img className="category-banner-img" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80" alt="Petit Déjeuner" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+                <img className="category-banner-img" src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80" alt="Petit déj" crossOrigin="anonymous" referrerPolicy="no-referrer" />
                 <div className="category-banner-overlay">
                     <div className="category-banner-text">
-                        <h2>Petit Déj</h2>
-                        <p>Bouillies traditionnelles & Amuse-bouches</p>
+                        <h2>Petit déj</h2>
+                        <p>Pour bien commencer la journée</p>
                     </div>
                 </div>
             </div>
 
             <div className="menu-section" id="petitdej">
+                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Nems</span><span className="item-price">200 F</span></div></div>
+                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Rissoles</span><span className="item-price">250 F</span></div></div>
                 <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Fonde</span><span className="item-price">500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Lakh</span><span className="item-price">1 000 F</span></div></div>
                 <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Thiakry</span><span className="item-price">500 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Nems (l'unité)</span><span className="item-price">200 F</span></div></div>
-                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Rissoles (l'unité)</span><span className="item-price">250 F</span></div></div>
+                <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Lakh</span><span className="item-price">1 000 F</span></div></div>
             </div>
 
             {/* ==================== SANDWICHS ==================== */}
@@ -236,6 +236,8 @@ export default function Home() {
                 <div className="menu-item fade-in"><div className="item-top"><span className="item-name">Burger Jamila</span><span className="item-price">2 500 F</span></div><p className="item-desc">Pain tortilla + double steak + double oeuf + frite + fromage</p></div>
             </div>
 
+
+
             {/* ==================== SUPPLEMENTS ==================== */}
             <div className="category-banner fade-in" id="banner-supplements">
                 <img className="category-banner-img" src="/images/drinks.jpg" alt="Extras" />
@@ -285,7 +287,7 @@ export default function Home() {
                 </div>
                 <div className="footer-divider"></div>
                 <p>Food and Drink &bull; Dakar, Senegal</p>
-                <p style={{marginTop: '6px'}}><a href="tel:+221771076969">(+221) 77 107 69 69</a></p>
+                <p style={{ marginTop: '6px' }}><a href="tel:+221771076969">(+221) 77 107 69 69</a></p>
             </div>
 
             {/* SCROLL TOP */}
